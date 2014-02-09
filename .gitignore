@@ -1,0 +1,5 @@
+vagrant
+.vagrant
+.idea
+www
+.DS_Store
