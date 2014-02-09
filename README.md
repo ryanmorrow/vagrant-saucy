@@ -4,10 +4,11 @@ This is a continuation of virtualbox building for Vagrant and Puppet from my blo
 
 
 ## The Heros
-None of this would be possible without standing on the shoulders of intellectual giants.
+None of this would be possible without standing on the shoulders of intellectual giants
 * [jrodriguezjr/puppet-lamp-stack](https:github.com/jrodriguezjr/puppet-lamp-stack)
-* [PerishableDave/puppet-lamp-stack](https://github.com/PerishableDave/puppet-lamp-stack).
-* [jas0nkim/my-vagrant-puppet-lamp](https://github.com/jas0nkim/my-vagrant-puppet-lamp).
+* [PerishableDave/puppet-lamp-stack](https://github.com/PerishableDave/puppet-lamp-stack)
+* [jas0nkim/my-vagrant-puppet-lamp](https://github.com/jas0nkim/my-vagrant-puppet-lamp)
+* [Puppet Cookbook](http://puppetcookbook.com/posts/creating-a-directory.html)
 
 ## Prerequisites
 * [Vagrant](http://www.vagrantup.com/)
@@ -15,5 +16,32 @@ None of this would be possible without standing on the shoulders of intellectual
 * [Ubuntu 64 Saucy - Puppet and Chef](http://glazzies.net/ubuntu_saucy_64_x86.box)
    MD5 (ubuntu_saucy_64_x86.box) = 54d9739b61151bc7238a735573748a2f
 
+## File Tree
+
+├── LICENSE
+├── README.md
+├── Vagrantfile
+├── manifests
+│   ├── default.pp
+│   └── vagrant_webroot
+├── modules
+│   ├── apache
+│   │   └── manifests
+│   │       └── init.pp
+│   ├── bootstrap
+│   │   └── manifests
+│   │       └── init.pp
+│   ├── mysql
+│   │   └── manifests
+│   │       └── init.pp
+│   ├── php
+│   │   └── manifests
+│   │       ├── init.pp
+│   │       ├── pear.pp
+│   │       └── pecl.pp
+│   └── tools
+│       └── manifests
+│           └── init.pp
+└── www
 
 
