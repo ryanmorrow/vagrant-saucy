@@ -19,15 +19,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_url = "http://glazzies.net/ubuntu_saucy_64_x86.box"
 
   # Create a private network
-  config.vm.network :private_network, ip: "192.168.33.10"
+  # config.vm.network :private_network, ip: "192.168.44.10"
 
-  # Add the server to your public network
-  # config.vm.network :public_network
+  # Run vm on lan
+  config.vm.network "public_network", :bridge => 'eth0', :mac => "5CA1AB1E0001"
+
 
   # Forward guest port 80 to host port 8888 and name mapping
   config.vm.network :forwarded_port, guest: 80, host: 8888
 
-  config.vm.synced_folder "./www/", "/vagrant/www/", :owner => "www-data"
+  # config.vm.synced_folder "./www/", "/var/www/", :owner => "www-data"
+
 
 
 end

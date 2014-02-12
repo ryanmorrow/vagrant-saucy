@@ -1,4 +1,4 @@
-# Create a LAMP development environment on Ubuntu Saucy 3.10 64 with Vagrant and Puppet for fun and enlightenment!
+# Create a LAMP development environment on Ubuntu Saucy 13.10 64 with Vagrant and Puppet for fun and enlightenment!
 
 This is a continuation of virtualbox building for Vagrant and Puppet from my blog post [How to create a Ubuntu 3.10 64 Vagrant box with Virtualbox and Puppet](http://spider.glazzies.net/2014/02/how-to-create-a-ubuntu-3-10-64-vagrant-box-with-virtualbox-and-puppet/).
 

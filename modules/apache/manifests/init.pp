@@ -18,38 +18,47 @@ class apache {
       ensure => "directory",
   }
 
+  # overwrite apache2.conf file with custom version
+  # file { "/etc/apache2/apache2.conf":
+  #   ensure => present,
+  #   source => "/vagrant/modules/apache/conf/apache2.conf",
+  #   require => Package["apache2"],
+  # }
+
   # create directory
   file {"/etc/apache2/sites-enabled":
     ensure => directory,
     recurse => true,
     purge => true,
     force => true,
-    before => File["/etc/apache2/sites-enabled/vagrant_webroot"],
+    before => File["/etc/apache2/sites-enabled/vagrant_webroot.config"],
     require => Package["apache2"],
   }
 
-  # create apache config from main vagrant manifests
-  file { "/etc/apache2/sites-available/vagrant_webroot":
+
+
+  # create apache virtual host config
+  file { "/etc/apache2/sites-available/vagrant_webroot.config":
     ensure => present,
-    source => "/vagrant/manifests/vagrant_webroot",
+    source => "/vagrant/modules/apache/conf/vagrant_webroot.config",
     require => Package["apache2"],
   }
 
   # symlink apache site to the site-enabled directory
-  file { "/etc/apache2/sites-enabled/vagrant_webroot":
+  file { "/etc/apache2/sites-enabled/vagrant_webroot.config":
     ensure => link,
-    target => "/etc/apache2/sites-available/vagrant_webroot",
-    require => File["/etc/apache2/sites-available/vagrant_webroot"],
+    target => "/etc/apache2/sites-available/vagrant_webroot.config",
+    require => File["/etc/apache2/sites-available/vagrant_webroot.config"],
     notify => Service["apache2"],
   }
 
-  # starts the apache2 service once the packages installed, and monitors changes to its configuration files and reloads if nesessary
+  # starts the apache2 service once the packages are installed, and monitors changes to its configuration files and reloads if nesessary
   service { "apache2":
     ensure => running,
     require => Package["apache2"],
     subscribe => [
       File["/etc/apache2/mods-enabled/rewrite.load"],
-      File["/etc/apache2/sites-available/vagrant_webroot"]
+      File["/etc/apache2/sites-available/vagrant_webroot.config"]
     ],
   }
 }
