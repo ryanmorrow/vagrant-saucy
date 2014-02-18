@@ -21,6 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a private network
   # config.vm.network :private_network, ip: "192.168.44.10"
 
+  # Or,
   # Run vm on lan
   config.vm.network "public_network", :bridge => 'eth0', :mac => "5CA1AB1E0001"
 
@@ -30,6 +31,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # config.vm.synced_folder "./www/", "/var/www/", :owner => "www-data"
 
-
+  config.vm.provision :shell, :path => 'manifests/bootstrap.sh'
 
 end
