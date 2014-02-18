@@ -21,21 +21,21 @@ If you don't know why you want Vagrant, read this [guy's awesome post](https://r
 ## Configure
 First, download the ubuntu saucy box then add the box to vagrant
 
-  % curl -O http://glazzies.net/ubuntu_saucy_64_x86.box
-  % vagrant box add ubuntu_saucy_64_x86.box ubuntu_saucy_64_x86
+    % curl -O http://glazzies.net/ubuntu_saucy_64_x86.box
+    % vagrant box add ubuntu_saucy_64_x86.box ubuntu_saucy_64_x86
 
 Then, download my vagrant/puppet scripts:
 
-  % clone https://github.com/ryanmorrow/vagrant-saucy.git
-  % cd vagrant-saucy
+    % clone https://github.com/ryanmorrow/vagrant-saucy.git
+    % cd vagrant-saucy
 
 Now, you are ready to start your new machine!
 
-  % vagrant up
+    % vagrant up
 
 Once the server is loaded, to login to the vm
 
-  % vagrant ssh
+    % vagrant ssh
 
 That's it! Now, go change the world.
 
