@@ -41,32 +41,32 @@ That's it! Now, go change the world.
 
 ## File Tree
 
-  ├── LICENSE
-  ├── README.md
-  ├── Vagrantfile
-  ├── apache2.conf
-  ├── manifests
-  │   ├── bootstrap.sh
-  │   └── default.pp
-  ├── modules
-  │   ├── apache
-  │   │   ├── conf
-  │   │   │   ├── apache2.conf
-  │   │   │   └── vagrant_webroot.config
-  │   │   └── manifests
-  │   │       └── init.pp
-  │   ├── bootstrap
-  │   │   └── manifests
-  │   │       └── init.pp
-  │   ├── mysql
-  │   │   └── manifests
-  │   │       └── init.pp
-  │   ├── php
-  │   │   └── manifests
-  │   │       ├── init.pp
-  │   │       ├── pear.pp
-  │   │       └── pecl.pp
-  │   └── tools
-  │       └── manifests
-  │           └── init.pp
-  └── www
+    ├── LICENSE
+    ├── README.md
+    ├── Vagrantfile
+    ├── apache2.conf
+    ├── manifests
+    │   ├── bootstrap.sh
+    │   └── default.pp
+    ├── modules
+    │   ├── apache
+    │   │   ├── conf
+    │   │   │   ├── apache2.conf
+    │   │   │   └── vagrant_webroot.config
+    │   │   └── manifests
+    │   │       └── init.pp
+    │   ├── bootstrap
+    │   │   └── manifests
+    │   │       └── init.pp
+    │   ├── mysql
+    │   │   └── manifests
+    │   │       └── init.pp
+    │   ├── php
+    │   │   └── manifests
+    │   │       ├── init.pp
+    │   │       ├── pear.pp
+    │   │       └── pecl.pp
+    │   └── tools
+    │       └── manifests
+    │           └── init.pp
+    └── www
