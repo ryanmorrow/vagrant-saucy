@@ -37,7 +37,7 @@ Once the server is loaded, to login to the vm
 
     % vagrant ssh
 
-That's it! Now, go change the world.
+That's it! Now, go change the world.  If you would like to try out managing more than one server, [check out the multisite version](https://github.com/ryanmorrow/vagrant-saucy-multi)!
 
 ## File Tree
 
