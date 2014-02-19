@@ -13,7 +13,19 @@ class php {
     "php5-curl",
     "php5-memcache",
     "php5-xsl",
+    "php-apc",
   ]
+
+  # Write apc.ini file
+   file { "/etc/php5/mods-available/apc.ini":
+     ensure => present,
+     source => "/vagrant/modules/php/conf/apc.ini",
+     require => Package["php-apc"],
+     owner => "root",
+     group => "root",
+     mode => 644,
+   }
+
 
   package { $packages:
     ensure => present,

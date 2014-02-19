@@ -15,6 +15,12 @@ class mysql {
     require => Package["mysql-server"],
   }
 
+  #install memcached
+  package { "memcached":
+    ensure => present,
+    require => Exec["apt-get update"]
+  }
+
   # set mysql password
   exec { "set-mysql-password":
     unless => "mysqladmin -uroot -p$mysqlpw status",

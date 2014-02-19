@@ -27,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
   # Forward guest port 80 to host port 8888 and name mapping
-  config.vm.network :forwarded_port, guest: 80, host: 8888
+  config.vm.network :forwarded_port, guest: 80, host: 8889
 
   # config.vm.synced_folder "./www/", "/var/www/", :owner => "www-data"
 

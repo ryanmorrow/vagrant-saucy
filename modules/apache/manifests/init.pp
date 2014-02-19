@@ -1,7 +1,13 @@
 class apache {
 
-  # install apache
-  package { "apache2":
+ # package install list
+  $packages = [
+    "apache2",
+    "imagemagick",
+  ]
+
+  # install packages
+  package { $packages:
     ensure => present,
     require => Exec["apt-get update"]
   }
@@ -19,11 +25,14 @@ class apache {
   }
 
   # overwrite apache2.conf file with custom version
-  # file { "/etc/apache2/apache2.conf":
-  #   ensure => present,
-  #   source => "/vagrant/modules/apache/conf/apache2.conf",
-  #   require => Package["apache2"],
-  # }
+   file { "/etc/apache2/apache2.conf":
+     ensure => present,
+     source => "/vagrant/modules/apache/conf/apache2.conf",
+     require => Package["apache2"],
+     owner => "root",
+     group => "root",
+     mode => 644,
+   }
 
   # create directory
   file {"/etc/apache2/sites-enabled":

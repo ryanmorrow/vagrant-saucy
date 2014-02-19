@@ -1,15 +1,8 @@
-class tools {
+class mongodb {
 
   # package install list
   $packages = [
-    "curl",
-    "vim",
-    "htop",
-    "git",
-    "build-essential",
-    "make",
-    "libpcre3-dev",
-    "postfix",
+    "mongodb",
   ]
 
   # install packages
