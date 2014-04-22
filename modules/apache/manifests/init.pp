@@ -4,6 +4,7 @@ class apache {
   $packages = [
     "apache2",
     "imagemagick",
+    "phpmyadmin"
   ]
 
   # install packages
@@ -28,7 +29,7 @@ class apache {
    file { "/etc/apache2/apache2.conf":
      ensure => present,
      source => "/vagrant/modules/apache/conf/apache2.conf",
-     require => Package["apache2"],
+     require => [Package["apache2"],Package["phpmyadmin"]],
      owner => "root",
      group => "root",
      mode => 644,
@@ -44,7 +45,11 @@ class apache {
     require => Package["apache2"],
   }
 
-
+  file { "/etc/apache2/conf-enabled/phpmyadmin.conf":
+    ensure => link,
+    target => "/etc/phpmyadmin/apache.conf",
+    require => [Package["apache2"],Package["phpmyadmin"]],
+  }
 
   # create apache virtual host config
   file { "/etc/apache2/sites-available/vagrant_webroot.config":
