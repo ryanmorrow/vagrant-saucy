@@ -59,7 +59,7 @@ class apache {
   }
 
   # symlink apache site to the site-enabled directory
-  file { "/etc/apache2/sites-enabled/vagrant_webroot.config":
+  file { "/etc/apache2/sites-enabled/000-vagrant-webroot.config":
     ensure => link,
     target => "/etc/apache2/sites-available/vagrant_webroot.config",
     require => File["/etc/apache2/sites-available/vagrant_webroot.config"],
