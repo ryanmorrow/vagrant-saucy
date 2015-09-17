@@ -4,7 +4,7 @@ class apache {
   $packages = [
     "apache2",
     "imagemagick",
-    "phpmyadmin"
+    "phpmyadmin",
   ]
 
   # install packages
@@ -13,7 +13,7 @@ class apache {
     require => Exec["apt-get update"]
   }
 
-  # ensures that mode_rewrite is loaded and modifies the default configuration file
+  # ensures that mod_rewrite is loaded and modifies the default configuration file
   file { "/etc/apache2/mods-enabled/rewrite.load":
     ensure => link,
     target => "/etc/apache2/mods-available/rewrite.load",
@@ -21,29 +21,29 @@ class apache {
   }
 
   # Check vagrant webroot directory is present
-  file { "/vagrant/www":
+  file { "/var/www/html":
       ensure => "directory",
   }
 
   # overwrite apache2.conf file with custom version
-   file { "/etc/apache2/apache2.conf":
-     ensure => present,
-     source => "/vagrant/modules/apache/conf/apache2.conf",
-     require => [Package["apache2"],Package["phpmyadmin"]],
-     owner => "root",
-     group => "root",
-     mode => 644,
-   }
+  # file { "/etc/apache2/apache2.conf":
+  #   ensure => present,
+  #   source => "/vagrant/modules/apache/conf/apache2.conf",
+  #   require => [Package["apache2"],Package["phpmyadmin"]],
+  #   owner => "root",
+  #   group => "root",
+  #   mode => 644,
+  # }
 
   # create directory
-  file {"/etc/apache2/sites-enabled":
-    ensure => directory,
-    recurse => true,
-    purge => true,
-    force => true,
-    before => File["/etc/apache2/sites-enabled/vagrant_webroot.config"],
-    require => Package["apache2"],
-  }
+  #file {"/etc/apache2/sites-enabled":
+  #  ensure => directory,
+  #  recurse => true,
+  #  purge => true,
+  #  force => true,
+  #  before => File["/etc/apache2/sites-enabled/vagrant_webroot.config"],
+  #  require => Package["apache2"],
+  #}
 
   file { "/etc/apache2/conf-enabled/phpmyadmin.conf":
     ensure => link,
@@ -52,17 +52,23 @@ class apache {
   }
 
   # create apache virtual host config
-  file { "/etc/apache2/sites-available/vagrant_webroot.config":
+  file { "/etc/apache2/sites-available/default-ssl.conf":
     ensure => present,
-    source => "/vagrant/modules/apache/conf/vagrant_webroot.config",
     require => Package["apache2"],
   }
 
-  # symlink apache site to the site-enabled directory
-  file { "/etc/apache2/sites-enabled/000-vagrant-webroot.config":
+  # symlink apache default SSL
+  file { "/etc/apache2/sites-enabled/default-ssl.conf":
     ensure => link,
-    target => "/etc/apache2/sites-available/vagrant_webroot.config",
-    require => File["/etc/apache2/sites-available/vagrant_webroot.config"],
+    target => "/etc/apache2/sites-available/default-ssl.conf",
+    require => File["/etc/apache2/sites-available/default-ssl.conf"],
+    notify => Service["apache2"],
+  }
+
+  # Enable SSL
+
+  exec { "/usr/sbin/a2enmod ssl":
+    require => Package["apache2"],
     notify => Service["apache2"],
   }
 
@@ -70,9 +76,9 @@ class apache {
   service { "apache2":
     ensure => running,
     require => Package["apache2"],
-    subscribe => [
-      File["/etc/apache2/mods-enabled/rewrite.load"],
-      File["/etc/apache2/sites-available/vagrant_webroot.config"]
-    ],
+    #subscribe => [
+    #  File["/etc/apache2/mods-enabled/rewrite.load"],
+    #  File["/etc/apache2/sites-available/vagrant_webroot.config"]
+    #],
   }
 }

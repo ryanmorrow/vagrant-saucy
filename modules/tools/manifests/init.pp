@@ -4,6 +4,7 @@ class tools {
   $packages = [
     "curl",
     "vim",
+    "vifm",
     "htop",
     "git",
     "build-essential",

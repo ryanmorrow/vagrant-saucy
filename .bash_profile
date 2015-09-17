@@ -24,8 +24,8 @@
 #export PS1="___________________    | \w @ \h (\u) \n| => "
 #export PS2="| => "
 
-export PATH="$PATH:/usr/local/bin/"
-export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+export PATH="$PATH:/usr/local/bin/:/home/vagrant/.composer/vendor/bin/"
+export PATH="/vagrant/bin:/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
 export EDITOR=/usr/bin/vim
 
 #   Set default blocksize for ls, df, du
@@ -268,3 +268,8 @@ httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grab
 #   then use: ~/Dev/Perl/randBytes 1048576 > 10MB.dat
 
 alias taillog='sudo tail -f /var/log/apache2/error.log'
+
+
+if [ -f /vagrant/liquidprompt/liquidprompt ]; then
+  . /vagrant/liquidprompt/liquidprompt
+fi
