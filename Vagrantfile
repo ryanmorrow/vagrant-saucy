@@ -8,6 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.manifests_path = "manifests"
     puppet.manifest_file = "default.pp"
     puppet.module_path = "modules"
+    puppet.options="--verbose --debug"
   end
 
   config.vm.provider "virtualbox" do |v|
@@ -29,7 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Forward guest port 80 to host port 8888 and name mapping
   config.vm.network :forwarded_port, guest: 80, host: 8889
 
-  config.vm.synced_folder "./www/", "/var/www/", :owner => "vagrant"
+  config.vm.synced_folder "./html/", "/var/www/html", :owner => "vagrant"
 
   config.vm.provision :shell, :path => 'manifests/bootstrap.sh'
 

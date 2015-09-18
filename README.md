@@ -1,6 +1,4 @@
-# Create a LAMP development environment on Ubuntu Saucy 13.10 64 with Vagrant and Puppet for fun and enlightenment!
-
-This is a continuation of virtualbox building for Vagrant and Puppet from my blog post [How to create a Ubuntu 3.10 64 Vagrant box with Virtualbox and Puppet](http://spider.glazzies.net/2014/02/how-to-create-a-ubuntu-3-10-64-vagrant-box-with-virtualbox-and-puppet/).
+# Create a LAMP development environment on Ubuntu Trusty 64 with Vagrant and Puppet for fun and enlightenment!
 
 ## The Heros
 None of this would be possible without standing on the shoulders of intellectual giants
@@ -19,10 +17,9 @@ If you don't know why you want Vagrant, read this [guy's awesome post](https://r
     MD5 (ubuntu_saucy_64_x86.box) = 54d9739b61151bc7238a735573748a2f
 
 ## Configure
-First, download the ubuntu saucy box then add the box to vagrant
+First, add the ubuntu trusty box with Vagrant
 
-    % curl -O http://glazzies.net/ubuntu_saucy_64_x86.box
-    % vagrant box add ubuntu_saucy_64_x86 ubuntu_saucy_64_x86.box 
+    % vagrant box add ubuntu/trusty64
 
 Then, download my vagrant/puppet scripts:
 
@@ -37,6 +34,9 @@ Once the server is loaded, to login to the vm
 
     % vagrant ssh
 
+
+By default you should be able to hit your new server at http[s]://192.168.44.10
+
 That's it! Now, go change the world.  If you would like to try out managing more than one server, [check out the multisite version](https://github.com/ryanmorrow/vagrant-saucy-multi)!
 
 ## File Tree
@@ -44,15 +44,12 @@ That's it! Now, go change the world.  If you would like to try out managing more
     ├── LICENSE
     ├── README.md
     ├── Vagrantfile
-    ├── apache2.conf
     ├── manifests
     │   ├── bootstrap.sh
     │   └── default.pp
     ├── modules
     │   ├── apache
     │   │   ├── conf
-    │   │   │   ├── apache2.conf
-    │   │   │   └── vagrant_webroot.config
     │   │   └── manifests
     │   │       └── init.pp
     │   ├── bootstrap
