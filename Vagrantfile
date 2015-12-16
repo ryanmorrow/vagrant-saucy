@@ -12,11 +12,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provider "virtualbox" do |v|
-    v.memory = 4096
+    v.memory = 2048
   end
 
   # Add the box version
-  config.vm.box = "ubuntu-VAGRANTSLASH-trusty64"
+  config.vm.box = "ubuntu/trusty64"
 
 
   # Create a private network
@@ -26,9 +26,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Run vm on lan
   # config.vm.network "public_network", :bridge => 'eth0', :mac => "5CA1AB1E0001"
 
+  # set auto_update to false, if you do NOT want to check the correct
+  # additions version when booting this machine
+  # https://github.com/dotless-de/vagrant-vbguest
+
+  config.vbguest.auto_update = true
+
+  # do NOT download the iso file from a webserver
+  config.vbguest.no_remote = true
 
   # Forward guest port 80 to host port 8888 and name mapping
-  config.vm.network :forwarded_port, guest: 80, host: 8889
+  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 80, host: 8443
 
   config.vm.synced_folder "./html/", "/var/www/html", :owner => "vagrant"
 
