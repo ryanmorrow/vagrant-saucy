@@ -36,7 +36,7 @@ class mysql {
   # Add a custom mysql user
   exec { "add-custom-mysql-user":
     unless => "mysqladmin -u$customUser -p$customPw status",
-    command => "mysql -u$customUser -p$customPw < $customAddUserScript",
+    command => "mysql -uroot -p$mysqlpw < $customAddUserScript",
     require => Service["mysql"],
   }
 }
